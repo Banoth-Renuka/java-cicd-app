@@ -50,48 +50,6 @@ The pipeline is defined in the `Jenkinsfile` and executes the following stages s
 5.  **Docker Build & Push:** Builds the Docker image based on the `Dockerfile`, tags it with the Git commit hash, logs into the Docker registry, and pushes the image.
 6.  **Deployment (Remote SSH):** Uses the `sshagent` block to connect to a remote server, pull the newly pushed Docker image, stop the old container, and start the new container, completing the Continuous Deployment cycle.
    
-I understand. Here is the complete, single-block content for your professional **`README.md`** file, including the necessary headings and structure for your Java CI/CD project on GitHub.
-
-```markdown
-# 🚀 Java CI/CD Pipeline with Jenkins, Maven, and Docker (DevOps Demo)
-
-This project demonstrates a full **Continuous Integration/Continuous Delivery (CI/CD)** pipeline for a simple Java application built with **Maven**. The workflow uses a **Jenkinsfile** to automate the build, code quality checks (SonarQube), artifact storage (Nexus), and deployment (Docker/SSH).
-
-## 🌟 Project Highlights
-
-| Component | Technology | Purpose in Pipeline |
-| :--- | :--- | :--- |
-| **Source Code** | Java 11 / Maven | The core application and build definitions. |
-| **Orchestration** | **Jenkins** | Drives the entire pipeline using the `Jenkinsfile`. |
-| **Code Quality** | **SonarQube** | Enforces code standards and security via a **Quality Gate**. |
-| **Artifact Storage** | **Nexus Repository** | Securely stores the final `.jar` file after testing. |
-| **Deployment** | **Docker / Remote SSH** | Packages the app into a container and deploys it to a remote host. |
-
-## ⚙️ Jenkins Pipeline Stages (`Jenkinsfile`)
-
-The pipeline runs sequentially, enforcing quality checks before proceeding to delivery:
-
-1.  **Checkout:** Clones the code from GitHub.
-2.  **Build & Test:** Executes `mvn clean install`.
-3.  **SonarQube Analysis & Quality Gate:** Scans the code and halts the build if standards are not met.
-4.  **Publish to Nexus:** Executes `mvn deploy` to store the `.jar` artifact.
-5.  **Docker Build & Push:** Builds the Docker image, tags it with the Git commit hash, and pushes it to a container registry.
-6.  **Deployment (Remote SSH):** Connects to the target server, pulls the new image, stops the old container, and starts the new application container.
-
-## 🗂️ File Structure
-
-```
-
-java-cicd-app/
-├── src/                            \# Java source code
-├── Jenkinsfile                     \# Pipeline script
-├── pom.xml                         \# Maven build file (includes Nexus config)
-├── Dockerfile                      \# Docker image definition
-├── .gitignore                      \# Ignores /target, IDE files
-└── LICENSE                         \# MIT License
-
-```
-
 ## ⚠️ Setup & Configuration Notes
 
 To successfully run this pipeline, you must configure the following in your Jenkins instance:
